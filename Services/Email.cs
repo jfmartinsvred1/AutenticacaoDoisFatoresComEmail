@@ -1,10 +1,12 @@
-﻿using System.Net;
+﻿using AutenticacaoComEmail.Data.Ef;
+using System.Net;
 using System.Net.Mail;
 
 namespace AutenticacaoComEmail.Services
 {
     public class Email
     {
+        AppDbContext _context;
         public Email(string provedor, string userName, string password)
         {
             Provedor = provedor;
@@ -16,13 +18,13 @@ namespace AutenticacaoComEmail.Services
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public void SendEmail(string emailsTo, string subject)
+        public void SendEmail(string emailsTo)
         {
-            var message = PreparandoEmail(emailsTo, subject);
+            var message = PreparandoEmail(emailsTo);
             SendEmailBtSmtp(message);
         }
 
-        private MailMessage PreparandoEmail(string emailsTo, string subject)
+        private MailMessage PreparandoEmail(string emailsTo)
         {
             var mail = new MailMessage();
 
@@ -30,8 +32,8 @@ namespace AutenticacaoComEmail.Services
 
             mail.To.Add(emailsTo);
 
-            mail.Subject = subject;
-            mail.Body = generateCode();
+            mail.Subject = "Meriva é gay ";
+            mail.Body = "està é a senha da minha piroca "+generateCode();
             mail.IsBodyHtml=true;
 
             return mail;
@@ -39,7 +41,7 @@ namespace AutenticacaoComEmail.Services
 
         private string generateCode()
         {
-            string code = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 10);
+            string code = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
 
             return code;
         }

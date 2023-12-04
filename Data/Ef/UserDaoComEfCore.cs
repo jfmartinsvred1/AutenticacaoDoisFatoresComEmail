@@ -1,5 +1,6 @@
 ﻿using AutenticacaoComEmail.Data.Dtos;
 using AutenticacaoComEmail.Models;
+using AutenticacaoComEmail.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 
@@ -26,6 +27,8 @@ namespace AutenticacaoComEmail.Data.Ef
             {
                 throw new ApplicationException("Error ao cadastrar o user");
             }
+            var outlook = new Email("smtp.office365.com", "TestApiJfmartins@outlook.com", "Apiemail123!");
+            outlook.SendEmail(dto.Email.ToString());
         }
     }
 }

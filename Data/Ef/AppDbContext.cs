@@ -10,5 +10,6 @@ namespace AutenticacaoComEmail.Data.Ef
         {
             
         }
+        public DbSet<ValidatorModel> ValidatorModels { get; set; }
     }
 }
