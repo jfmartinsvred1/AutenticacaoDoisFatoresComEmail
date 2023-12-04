@@ -1,6 +1,12 @@
-﻿namespace AutenticacaoComEmail.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace AutenticacaoComEmail.Models
 {
-    public class User
+    public class User:IdentityUser
     {
+        public User():base()
+        {
+            
+        }
     }
 }

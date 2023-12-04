@@ -1,6 +1,14 @@
-var builder = WebApplication.CreateBuilder(args);
+using AutenticacaoComEmail.Data.Ef;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+var coon = builder.Configuration.GetConnectionString("EmailConn");
 // Add services to the container.
+builder.Services.AddDbContext<AppDbContext>(opts =>
+{
+    opts.UseMySql(coon,ServerVersion.AutoDetect(coon));
+});
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
