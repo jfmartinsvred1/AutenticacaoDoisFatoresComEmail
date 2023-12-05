@@ -4,6 +4,7 @@ namespace AutenticacaoComEmail.Data
 {
     public interface IUserDao
     {
-        Task IncluirAsync(LoginUserDto dto);
+        Task IncluirAsync(CreateUserDto dto);
+        void AutenticaUserCod(string codigo, string email);
     }
 }

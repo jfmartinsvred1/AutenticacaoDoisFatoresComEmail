@@ -16,12 +16,19 @@ namespace AutenticacaoComEmail.Controllers
             _userDao = userDao;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Include(LoginUserDto dto)
+        [HttpPost("cadastra")]
+        public async Task<IActionResult> Include(CreateUserDto dto)
         {
             await _userDao.IncluirAsync(dto);
 
             return Ok("Criado Com Sucesso");
+        }
+        [HttpPost("autentica")]
+        public IActionResult AutenticaEmail(string code, string email) 
+        {
+            _userDao.AutenticaUserCod(code, email);
+            return Ok("Autenticado");
+
         }
     }
 }

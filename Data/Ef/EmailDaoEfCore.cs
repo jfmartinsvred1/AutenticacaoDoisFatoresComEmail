@@ -22,5 +22,6 @@ namespace AutenticacaoComEmail.Data.Ef
             _appDbContext.SaveChanges();
             return code;
         }
+
     }
 }

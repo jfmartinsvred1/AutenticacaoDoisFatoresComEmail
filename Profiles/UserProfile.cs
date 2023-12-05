@@ -8,6 +8,7 @@ namespace AutenticacaoComEmail.Profiles
     {
         public UserProfile()
         {
+            CreateMap<CreateUserDto,User>();
             CreateMap<LoginUserDto,User>();
         }
     }
