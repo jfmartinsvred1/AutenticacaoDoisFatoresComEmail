@@ -10,11 +10,13 @@ namespace AutenticacaoComEmail.Data.Ef
     {
         IMapper _mapper;
         UserManager<User> _userManager;
+        IEmailDao _emailDao;
 
-        public UserDaoComEfCore(IMapper mapper, UserManager<User> userManager)
+        public UserDaoComEfCore(IMapper mapper, UserManager<User> userManager, IEmailDao emailDao)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _emailDao = emailDao;
         }
 
         public async Task IncluirAsync(LoginUserDto dto)
@@ -28,7 +30,7 @@ namespace AutenticacaoComEmail.Data.Ef
                 throw new ApplicationException("Error ao cadastrar o user");
             }
             var outlook = new Email("smtp.office365.com", "TestApiJfmartins@outlook.com", "Apiemail123!");
-            outlook.SendEmail(dto.Email.ToString());
+            outlook.SendEmail(dto.Email.ToString(), _emailDao.saveCod(dto.Email.ToString()));
         }
     }
 }

@@ -2,15 +2,14 @@
 
 namespace AutenticacaoComEmail.Models
 {
-    public class ValidatorModel
+    public class ValidatorTemp
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required]
         public string Code { get; set; }
-
-
     }
 }

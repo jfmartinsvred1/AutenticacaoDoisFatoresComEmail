@@ -18,13 +18,13 @@ namespace AutenticacaoComEmail.Services
         public string UserName { get; set; }
         public string Password { get; set; }
 
-        public void SendEmail(string emailsTo)
+        public void SendEmail(string emailsTo, string code)
         {
-            var message = PreparandoEmail(emailsTo);
+            var message = PreparandoEmail(emailsTo,  code);
             SendEmailBtSmtp(message);
         }
 
-        private MailMessage PreparandoEmail(string emailsTo)
+        private MailMessage PreparandoEmail(string emailsTo, string code)
         {
             var mail = new MailMessage();
 
@@ -32,19 +32,13 @@ namespace AutenticacaoComEmail.Services
 
             mail.To.Add(emailsTo);
 
-            mail.Subject = "Meriva é gay ";
-            mail.Body = "està é a senha da minha piroca "+generateCode();
+            mail.Subject = "Confirmacao de email na Api De Jfmartins";
+            mail.Body = "Codigo de confirmação: "+code;
             mail.IsBodyHtml=true;
 
             return mail;
         }
 
-        private string generateCode()
-        {
-            string code = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 6);
-
-            return code;
-        }
 
         private void SendEmailBtSmtp(MailMessage mail)
         {

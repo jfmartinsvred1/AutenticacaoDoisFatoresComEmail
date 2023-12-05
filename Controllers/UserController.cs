@@ -20,6 +20,7 @@ namespace AutenticacaoComEmail.Controllers
         public async Task<IActionResult> Include(LoginUserDto dto)
         {
             await _userDao.IncluirAsync(dto);
+
             return Ok("Criado Com Sucesso");
         }
     }

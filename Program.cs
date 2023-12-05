@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var coon = builder.Configuration.GetConnectionString("EmailConn");
 // Add services to the container.
 builder.Services.AddTransient<IUserDao, UserDaoComEfCore>();
+builder.Services.AddTransient<IEmailDao, EmailDaoEfCore>();
 builder.Services.AddDbContext<AppDbContext>(opts =>
 {
     opts.UseMySql(coon,ServerVersion.AutoDetect(coon));
