@@ -1,5 +1,6 @@
 ﻿using AutenticacaoComEmail.Data;
 using AutenticacaoComEmail.Data.Dtos;
+using AutenticacaoComEmail.Models;
 using AutenticacaoComEmail.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,9 +25,10 @@ namespace AutenticacaoComEmail.Controllers
             return Ok("Criado Com Sucesso");
         }
         [HttpPost("autentica")]
-        public IActionResult AutenticaEmail(string code, string email) 
+        public IActionResult AutenticaEmail(AutModel aut) 
         {
-            _userDao.AutenticaUserCod(code, email);
+
+            _userDao.AutenticaUserCod(aut.Code,aut.Email);
             return Ok("Autenticado");
 
         }
