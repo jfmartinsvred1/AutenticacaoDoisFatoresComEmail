@@ -9,14 +9,14 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
     crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="/scripts/script.js" defer></script>
 </head>
 <body>
     <nav class="d-flex justify-content-around shadow-lg p-3 mb-5 bg-white rounded">
         <h1>API EMAIL</h1>
         <div class="d-flex align-items-center">
-            <button class="btn btn-secondary m-1 btnLogin">Login</button>
-            <button class="btn btn-secondary m-1 btnCadastro">Cadastro</button>
+            <button class="btn btn-secondary m-1 btnLogin" onclick="sumirBtnLoginEIrTelaDeLogin()">Login</button>
+            <button class="btn btn-secondary m-1 btnCadastro" onclick="sumirBtnCadastroEIrParaTelaDeCadastro()">Cadastro</button>
         </div>
     </nav>
     <section class="cadastro">
@@ -28,7 +28,7 @@
                     <input type="email" name="email" id="email" placeholder="Email" class="m-3 w-50 form-control">
                     <input type="password" name="username" id="password" placeholder="Password" class="m-3 w-50 form-control">
                     <input type="password" name="rePassword" id="rePassword" placeholder="Password Confirmation" class="m-3 w-50 form-control">
-                    <!-- <span>Senha Incorreta</span> -->
+                    <span class="txtSenha pb-2">Senhas não correspondem</span>
                     <button class="btn btn-primary submitCadastro" type="submit">Cadastrar</button>
                 </div>
             </div>
@@ -38,11 +38,11 @@
         <form class="d-flex justify-content-center">
             <div class="shadow p-3 mb-5 bg-white rounded d-flex flex-column justify-content-center" style="height:500px; width:550px;">
                 <h1 class="text-center">Login</h1>
-                <form action="Cadastro" class="m-3 d-flex flex-column justify-content-around align-items-center mt-5">
+                <div action="Cadastro" class="m-3 d-flex flex-column justify-content-around align-items-center mt-5">
                     <input type="text" name="usernameLogin" id="usernameLogin" placeholder="Username" class="m-3 w-50 form-control">
                     <input type="password" name="passwordLogin" id="passwordLogin" placeholder="Password" class="m-3 w-50 form-control">
                     <button class="btn btn-primary">Cadastrar</button>
-                </form>
+                </div>
             </div>
         </form>
     </section>

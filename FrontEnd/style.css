@@ -7,4 +7,8 @@
 .aut{
     display: none;
 }
+.txtSenha{
+    color: red;
+    display: none;
+}
 
