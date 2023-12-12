@@ -6,5 +6,6 @@ namespace AutenticacaoComEmail.Data
     {
         Task IncluirAsync(CreateUserDto dto);
         void AutenticaUserCod(string codigo, string email);
+        Task LogarAsync(LoginUserDto dto);
     }
 }

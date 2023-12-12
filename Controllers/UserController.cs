@@ -32,5 +32,10 @@ namespace AutenticacaoComEmail.Controllers
             return Ok("Autenticado");
 
         }
+        public async Task<IActionResult> Login(LoginUserDto dto)
+        {
+            _userDao.LogarAsync(dto);
+            return Ok("Logado");
+        }
     }
 }
