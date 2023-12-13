@@ -1,6 +1,12 @@
 
 const url = "https://localhost:7193/User/"
+//Var Temps
 let emailTemp=""
+let logado;
+let usernameTemp="";
+
+//User
+const txtUser=document.querySelector('.logado');
 
 //FormLogin
 const usernameLogin=document.getElementById('usernameLogin');
@@ -62,6 +68,33 @@ function sumirFormCadastro(){
     formCadastro.style.display='none'
 }
 
+function aparecerTxtSenhasNaoIguais(){
+    txtSenha.style.display='block'
+}
+
+function sumirTxtSenhasNaoIguais(){
+    txtSenha.style.display='none'
+}
+//Funcs Logado
+function aparecerNomeUser(){
+    txtUser.innerHTML=`Olá, ${usernameTemp}`
+}
+
+function telaDeLogado(){
+    sumirBtnCadastro()
+    sumirBtnLogin()
+    sumirFormCadastro()
+    sumirFormLogin()
+    aparecerNomeUser()
+}
+
+if(logado){
+    telaDeLogado()
+}
+function zerarTempsLogin(){
+    usernameTemp=''
+}
+
 //Funcs Aut
 function sumirTelaAut(){
     formAut.style.display='none'
@@ -89,6 +122,7 @@ function clickBtnLogin(){
 function irParaTelaAutAposCadastro(){
     sumirFormCadastro()
     aparecerTelaAut()
+    sumirTxtSenhasNaoIguais()
 }
 
 //Post cadasto
@@ -109,6 +143,9 @@ async function postCadastro(cadastro, login){
         emailTemp=''
         console.log(emailTemp)
         postLogin(login)
+    }
+    else{
+        zerarTempsLogin()
     }
 }
 
@@ -140,6 +177,14 @@ async function postLogin(login){
     });
     const data = await response.json();
     console.log(data);
+    if(response.ok){
+        logado=true
+        telaDeLogado()
+        console.log(logado)
+    }
+    else{
+        zerarTempsLogin()
+    }
 }
 
 
@@ -160,7 +205,9 @@ cadastroForm.addEventListener('submit', (e)=>{
             'Content-Type':'application/json',
             'Accept': 'application/json'
         }
+        
     }
+    usernameTemp=login.username
     emailTemp=emailCadastro.value;
     cadastro = JSON.stringify(cadastro);
     login = JSON.stringify(login);
@@ -168,7 +215,7 @@ cadastroForm.addEventListener('submit', (e)=>{
     }
     else{
         e.preventDefault()
-        txtSenha.style.display='block'
+        aparecerTxtSenhasNaoIguais()
     }
 })
 
