@@ -50,7 +50,7 @@ function aparecerTelaAut(){
 }
 
 //Post cadasto
-async function postCadastro(cadastro){
+async function postCadastro(cadastro, login){
     const response = await fetch(`${url}cadastra`,{
         method:"POST",
         body: cadastro,
@@ -59,11 +59,15 @@ async function postCadastro(cadastro){
             'Accept': 'application/json'
         }
     });
-    if(response.ok){
-        aparecerTelaAut()
-    }
     const data = await response.json();
     console.log(data);
+    if(response.ok){
+        console.log(emailTemp)
+        aparecerTelaAut()
+        emailTemp=''
+        console.log(emailTemp)
+        postLogin(login)
+    }
 }
 
 //Post Aut 
@@ -79,9 +83,6 @@ async function postAut(aut){
     });
 
     const data = await response.json();
-    if(data=="Autenticado"){
-        
-    }
     console.log(data);
 }
 
@@ -110,9 +111,18 @@ cadastroForm.addEventListener('submit', (e)=>{
         password: passwordCadastro.value,
         rePassword:passwordCadastro.value
     }
+    let login={
+        username:cadastro.username,
+        password:cadastro.password,
+        headers:{
+            'Content-Type':'application/json',
+            'Accept': 'application/json'
+        }
+    }
     emailTemp=emailCadastro.value;
     cadastro = JSON.stringify(cadastro);
-    postCadastro(cadastro);
+    login = JSON.stringify(login);
+    postCadastro(cadastro, login);
     }
     else{
         e.preventDefault()
