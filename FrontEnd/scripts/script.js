@@ -26,27 +26,69 @@ const autForm=document.querySelector("#aut");
 const codAut=document.querySelector("#codAut");
 const formAut =document.querySelector('.aut');
 
+//Funcs Login
 
-
-function sumirBtnCadastroEIrParaTelaDeCadastro(){
-    btnCadastro.style.display='none'
-    formCadastro.style.display='block'
-    formLogin.style.display='none';
-    btnLogin.style.display='block';
+function sumirBtnLogin(){
+    btnLogin.style.display='none'
 }
 
-function sumirBtnLoginEIrTelaDeLogin(){
-    btnLogin.style.display='none'
+function aparecerBtnLogin(){
+    btnLogin.style.display='block'
+}
+
+function aparecerFormLogin(){
     formLogin.style.display='block'
+}
+
+function sumirFormLogin(){
+    formLogin.style.display='none'
+}
+
+//Funcs Cadastro
+
+function sumirBtnCadastro(){
+    btnCadastro.style.display='none'
+}
+
+function aparecerBtnCadastro(){
     btnCadastro.style.display='block'
+}
+
+function aparecerFormCadastro(){
+    formCadastro.style.display='block'
+}
+
+function sumirFormCadastro(){
     formCadastro.style.display='none'
+}
+
+//Funcs Aut
+function sumirTelaAut(){
     formAut.style.display='none'
 }
-
-//Sumir a tela cadastro
 function aparecerTelaAut(){
-    formCadastro.style.display='none'
     formAut.style.display='block'
+}
+//Functions BtnsHtml
+function clickBtnCadastro(){
+    sumirBtnCadastro()
+    aparecerFormCadastro()
+    sumirFormLogin()
+    aparecerBtnLogin()
+}
+
+function clickBtnLogin(){
+    sumirBtnLogin()
+    aparecerFormLogin()
+    sumirBtnCadastro()
+    sumirFormCadastro()
+    sumirTelaAut()
+}
+//Functions 
+
+function irParaTelaAutAposCadastro(){
+    sumirFormCadastro()
+    aparecerTelaAut()
 }
 
 //Post cadasto
@@ -63,7 +105,7 @@ async function postCadastro(cadastro, login){
     console.log(data);
     if(response.ok){
         console.log(emailTemp)
-        aparecerTelaAut()
+        irParaTelaAutAposCadastro()
         emailTemp=''
         console.log(emailTemp)
         postLogin(login)
