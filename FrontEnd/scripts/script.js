@@ -2,9 +2,13 @@
 const url = "https://localhost:7193/User/"
 let emailTemp=""
 
-const btnCadastro=document.querySelector(".btnCadastro");
-const formCadastro=document.querySelector(".cadastro");
-const submitCadasto=document.querySelector(".submitCadastro");
+//FormLogin
+const usernameLogin=document.getElementById('usernameLogin');
+const passwordLogin=document.getElementById('passwordLogin');
+const btnLogin=document.querySelector(".btnLogin");
+const formLogin=document.querySelector(".logar");
+const submitLogin=document.getElementById('sumitLogin');
+const loginForm=document.querySelector('#loginForm');
 
 //FormCadastro
 const cadastroForm=document.querySelector('#cadastroForm')
@@ -13,14 +17,13 @@ const emailCadastro=document.querySelector('#email')
 const passwordCadastro=document.querySelector('#password')
 const rePasswordCadastro=document.querySelector('#rePassword')
 const txtSenha=document.querySelector('.txtSenha');
+const btnCadastro=document.querySelector(".btnCadastro");
+const formCadastro=document.querySelector(".cadastro");
+const submitCadasto=document.querySelector(".submitCadastro");
 
 //FormAut
 const autForm=document.querySelector("#aut");
 const codAut=document.querySelector("#codAut");
-
-const btnLogin=document.querySelector(".btnLogin");
-const formLogin=document.querySelector(".logar");
-
 const formAut =document.querySelector('.aut');
 
 
@@ -37,16 +40,13 @@ function sumirBtnLoginEIrTelaDeLogin(){
     formLogin.style.display='block'
     btnCadastro.style.display='block'
     formCadastro.style.display='none'
+    formAut.style.display='none'
 }
 
 //Sumir a tela cadastro
 function aparecerTelaAut(){
-    submitCadasto.addEventListener('click', ()=>{
-        formCadastro.style.display='none'
-        formAut.style.display='block'
-    
-    
-    })
+    formCadastro.style.display='none'
+    formAut.style.display='block'
 }
 
 //Post cadasto
@@ -59,7 +59,9 @@ async function postCadastro(cadastro){
             'Accept': 'application/json'
         }
     });
-
+    if(response.ok){
+        aparecerTelaAut()
+    }
     const data = await response.json();
     console.log(data);
 }
@@ -83,6 +85,20 @@ async function postAut(aut){
     console.log(data);
 }
 
+//PostLogin
+async function postLogin(login){
+    const response= await fetch(`${url}login`,{
+        method:"POST",
+        body:login,
+        headers:{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    });
+    const data = await response.json();
+    console.log(data);
+}
+
 
 cadastroForm.addEventListener('submit', (e)=>{
     if(passwordCadastro.value==rePasswordCadastro.value){
@@ -97,7 +113,6 @@ cadastroForm.addEventListener('submit', (e)=>{
     emailTemp=emailCadastro.value;
     cadastro = JSON.stringify(cadastro);
     postCadastro(cadastro);
-    aparecerTelaAut()
     }
     else{
         e.preventDefault()
@@ -118,4 +133,19 @@ autForm.addEventListener('submit', (e)=>{
     aut = JSON.stringify(aut);
 
     postAut(aut);
+})
+
+loginForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    let login={
+        username:usernameLogin.value,
+        password:passwordLogin.value,
+        headers:{
+            'Content-Type':'application/json',
+            'Accept': 'application/json'
+        }
+    }
+    login = JSON.stringify(login);
+
+    postLogin(login);
 })
