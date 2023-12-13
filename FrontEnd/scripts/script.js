@@ -244,6 +244,7 @@ loginForm.addEventListener('submit', (e)=>{
             'Accept': 'application/json'
         }
     }
+    usernameTemp=login.username
     login = JSON.stringify(login);
 
     postLogin(login);
