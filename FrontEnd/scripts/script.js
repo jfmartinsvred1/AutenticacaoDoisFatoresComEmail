@@ -1,9 +1,9 @@
 
 const url = "https://localhost:7193/User/"
 //Var Temps
-let emailTemp=""
+let emailTemp
 let logado;
-let usernameTemp="";
+let usernameTemp;
 
 //User
 const txtUser=document.querySelector('.logado');
@@ -140,9 +140,10 @@ async function postCadastro(cadastro, login){
     if(response.ok){
         console.log(emailTemp)
         irParaTelaAutAposCadastro()
-        emailTemp=''
         console.log(emailTemp)
         postLogin(login)
+        localStorage.setItem(emailTemp);
+        console.log(localStorage)
     }
     else{
         zerarTempsLogin()
