@@ -4,7 +4,6 @@ const url = "https://localhost:7193/User/"
 let emailTemp
 let logado;
 let usernameTemp;
-
 //User
 const txtUser=document.querySelector('.logado');
 
@@ -32,8 +31,17 @@ const autForm=document.querySelector("#aut");
 const codAut=document.querySelector("#codAut");
 const formAut =document.querySelector('.aut');
 
-//Funcs Login
 
+//mudar funcs para receber variaves e limpar o codigo com menos funcs
+
+function sumir(a){
+    a.style.display='none'
+}
+function aparecer(a){
+    a.style.display='block'
+}
+
+//funcs lgin
 function sumirBtnLogin(){
     btnLogin.style.display='none'
 }
